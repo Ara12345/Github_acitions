@@ -13,19 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
         id: tagname
       - name: "Checkout"
         run: |
-          git fetch
           git checkout -b "new_branch"
-      - id: data
-        uses: gr2m/get-json-paths-action@v1.x
-        with:
-          json: ${{ steps.action_with_json_output.outputs.data }}
-          bar: "foo.bar"
-      # - run: "echo bar is ${{ steps.data.outputs.bar }}"
-      # - name: "Echo"
-      #   run: |
-      #     echo "AUTH_TOKEN= $(jq '.authorizationToken' at.json)" >> $GITHUB_ENV
-      #     echo "${{ steps.tagname.outputs}}"
+      - name: "Echo"
+        run: |
+          echo "${{ steps.tagname.outputs}}"
