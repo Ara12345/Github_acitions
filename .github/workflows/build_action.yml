@@ -17,7 +17,8 @@ jobs:
         id: tagname
       - name: "Checkout"
         run: |
-          git checkout "new_branch"
+          git fetch
+          git checkout -b "new_branch"
       - name: "Echo"
         run: |
           echo "${{ steps.tagname.outputs}}"
