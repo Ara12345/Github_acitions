@@ -3,29 +3,19 @@ name: CI
 # Controls when the workflow will run
 on:
   workflow_dispatch:
-    inputs:
-      logLevel:
-        description: "Log level"
-        required: true
-        default: "warning"
-        type: choice
-        options:
-          - info
-          - warning
-          - debug
-      tags:
-        description: "Test scenario tags"
-        required: false
-        type: boolean
 
-    # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: ["main"]
 jobs:
-  launchDarklyCodeReferences:
+  name_checkout:
     name: Build action
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          path: new_branch
+
+        id: tagname
+      - name: "Checkout"
+        run: git checkout new_branch
+      - name: "Echo"
+        run: echo "${{ steps.tagname.outputs}}"
