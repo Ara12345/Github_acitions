@@ -19,6 +19,13 @@ jobs:
         run: |
           git fetch
           git checkout -b "new_branch"
-      - name: "Echo"
-        run: |
-          echo "${{ steps.tagname.outputs}}"
+      - id: data
+        uses: gr2m/get-json-paths-action@v1.x
+        with:
+          json: ${{ steps.action_with_json_output.outputs.data }}
+          bar: "foo.bar"
+      # - run: "echo bar is ${{ steps.data.outputs.bar }}"
+      # - name: "Echo"
+      #   run: |
+      #     echo "AUTH_TOKEN= $(jq '.authorizationToken' at.json)" >> $GITHUB_ENV
+      #     echo "${{ steps.tagname.outputs}}"
