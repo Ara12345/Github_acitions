@@ -19,4 +19,4 @@ jobs:
           git checkout -b "new_branch"
       - name: "Echo"
         run: |
-          echo "${{ steps.tagname.outputs}}"
+          echo "${{ fromJson(steps.tagname.outputs)}}"
