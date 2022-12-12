@@ -23,7 +23,7 @@ jobs:
         run: echo "${{steps.step1.outputs.test}}"
       - id: step4
         if: runner.os != 'Windows'
-        run: echo "The system is runnin on ${{runner.os}}"
+        run: echo "The system is running on ${{runner.os}}"
   job2:
     name: Build action
     runs-on: ubuntu-latest
@@ -31,6 +31,7 @@ jobs:
     steps:
       - id: step1
         run: echo "${{needs.job1.outputs.output1}}"
+
 # name: CI
 # # Controls when the workflow will run
 # on:
